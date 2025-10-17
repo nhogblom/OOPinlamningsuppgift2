@@ -17,7 +17,7 @@ public class BestGymEver {
         try (Scanner sc = new Scanner(new File(filename))) {
             members = RecoverFromFile.readMembersFromFileToList(sc);
         } catch (FileNotFoundException e) {
-            System.out.println("Kunde inte hitta medlemsfil.");
+            System.out.println("Kunde inte hitta medlemsregistret.");
         }
 
         while (true && members != null) {
@@ -31,7 +31,10 @@ public class BestGymEver {
                 IO.println("Ingen träff, försök igen.");
             } else {
                 IO.println(member.InfoToReceptionist());
-                member.logVisit();
+                if (member.membershipValid()) {
+                    member.logVisit();
+                    IO.println("Besök registrerades.");
+                }
             }
         }
     }
