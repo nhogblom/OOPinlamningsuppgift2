@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecoverTool {
-    List<Member> membersList = new ArrayList<>();
+    List<Member> membersList;
 
     @Test
     void readMembersFromFileTest(){
@@ -16,7 +16,7 @@ class RecoverTool {
                 "Astrid Larsson;Järnvägsvägen 5, 64230 Gävle;asta@fakemail.de;540815-4382;2021-12-04;2022-12-04;Platina";
         Scanner sc = new Scanner(exampleRecoveryFileTextForTwoUsers);
 
-        RecoverFromFile.readMembersFromFileToList(sc,membersList);
+        membersList = RecoverFromFile.readMembersFromFileToList(sc);
 
         assertEquals(2,membersList.size());
         assertNotEquals(1,membersList.size());
