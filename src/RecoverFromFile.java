@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class RecoverFromFile {
 
-
     public static Member createMemberFromFileData(String[] rawMemberData) {
         Member member = null;
         try {
@@ -13,7 +12,7 @@ public class RecoverFromFile {
             String adress = rawMemberData[1].trim();
             String email = rawMemberData[2].trim();
             String personnummer = rawMemberData[3].trim();
-            LocalDate dateOfBecommingMember = LocalDate.parse(rawMemberData[4].trim());
+            LocalDate dateOfBecomingMember = LocalDate.parse(rawMemberData[4].trim());
             LocalDate dateOfMostRecentMembershipRenewal = LocalDate.parse(rawMemberData[5].trim());
             String memberTypeString = rawMemberData[6].trim();
             memberType memberTypeCurrent = null;
@@ -22,7 +21,7 @@ public class RecoverFromFile {
                     memberTypeCurrent = mType;
                 }
             }
-            member = new Member(name, adress, personnummer, email, dateOfBecommingMember, dateOfMostRecentMembershipRenewal, memberTypeCurrent);
+            member = new Member(name, adress, personnummer, email, dateOfBecomingMember, dateOfMostRecentMembershipRenewal, memberTypeCurrent);
         } catch (Exception e) {
             System.out.println("Fel vid inläsning av användardata.."+e.getMessage());
         }
