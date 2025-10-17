@@ -21,7 +21,7 @@ class MemberTest {
 
     @Test
     void logVisitTest() {
-        String expected = "Niklas, 9000001234 besökte gymmet " + LocalDate.now().toString();
+        String expected = "Niklas, 9000001234 besökte gymmet " + LocalDate.now();
         System.out.println(expected);
         assertEquals(expected, m1.logVisit());
         assertNotEquals(expected, m2.logVisit());

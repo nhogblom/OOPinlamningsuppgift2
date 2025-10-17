@@ -9,7 +9,7 @@ public class Member extends Person{
     private memberType memberType;
 
     public String logVisit(){
-        return this.getName()+", "+this.getPersonnummer()+" besökte gymmet "+LocalDate.now().toString();
+        return this.getName()+", "+this.getPersonnummer()+" besökte gymmet "+LocalDate.now();
     }
 
     public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, memberType memberType) {
