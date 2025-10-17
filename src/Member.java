@@ -1,4 +1,6 @@
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Member extends Person{
     private String email;
@@ -12,5 +14,18 @@ public class Member extends Person{
         this.dateOfBecomingMember = dateOfBecomingMember;
         this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
         this.memberType = memberType;
+    }
+
+    public boolean membershipValid(){
+        Period period = Period.between(dateOfMostRecentMembershipRenewal, LocalDate.now());
+        if (period.toTotalMonths() <= 12){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public String InfoToReceptionist() {
+        return "";
     }
 }

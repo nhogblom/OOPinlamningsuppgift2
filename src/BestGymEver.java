@@ -7,6 +7,11 @@ public class BestGymEver {
     String filename = "src/gym_medlemmar.txt";
     List<Member> members = null;
 
+    public void logVisit(Member member){
+
+    }
+
+
     public BestGymEver() {
 
         try (Scanner sc = new Scanner(new File(filename))) {
@@ -15,7 +20,7 @@ public class BestGymEver {
             System.out.println("Kunde inte hitta medlemsfil.");
         }
 
-        while (true) {
+        while (true && members != null) {
             String match = IO.readln("Skriv in ett namn eller personnummer:\n");
             Member member = SearchMemberList.search(match, members);
             if (member == null) {
