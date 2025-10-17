@@ -1,6 +1,6 @@
 public enum memberType {
     PLATINA("Platina"),
-    GOLD("Guld"),
+    GULD("Guld"),
     STANDARD("Standard");
 
     private String printableName;

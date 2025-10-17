@@ -26,7 +26,7 @@ public class BestGymEver {
             if (member == null) {
                 IO.println("Ingen träff, försök igen.");
             } else {
-                IO.println(member.getAdress());
+                IO.println(member.InfoToReceptionist());
             }
         }
     }
