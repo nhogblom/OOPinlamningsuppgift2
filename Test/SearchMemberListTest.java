@@ -18,7 +18,6 @@ class SearchMemberListTest {
     void searchTest() {
         members.add(m1);
         members.add(m2);
-
         assertEquals(m1,SearchMemberList.search("Niklas",members));
         assertEquals(m2,SearchMemberList.search("Albin",members));
         assertNotEquals(m2,SearchMemberList.search("Niklas",members));
