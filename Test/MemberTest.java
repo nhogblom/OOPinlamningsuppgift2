@@ -24,8 +24,9 @@ class MemberTest {
     }
     @Test
     void logVisit() {
-        String expected = "Niklas, 9001111234 besökte gymmet 2025-10-17";
-        assertEquals(expected, Member.l);
+        String expected = "Niklas, 9000001234 besökte gymmet "+LocalDate.now().toString();
+        System.out.println(expected);
+        assertEquals(expected, m1.logVisit());
     }
 
     @Test
