@@ -22,6 +22,10 @@ public class BestGymEver {
 
         while (true && members != null) {
             String match = IO.readln("Skriv in ett namn eller personnummer:\n");
+            if  (match.equals("quit")) {
+                IO.println("Användaren valde att avsluta programmet.\n");
+                break;
+            }
             Member member = SearchMemberList.search(match, members);
             if (member == null) {
                 IO.println("Ingen träff, försök igen.");

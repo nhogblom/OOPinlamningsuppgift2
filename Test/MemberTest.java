@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
-    Member m1 = new Member("Niklas","Borrvägen","9000001234","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2025-05-20"),memberType.PLATINA);
-    Member m2 = new Member("Johan","Borrvägen","9000001234","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2022-05-20"),memberType.PLATINA);
-    Member m3 = new Member("Stefan","Borrvägen","9000001234","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2025-05-20"),memberType.STANDARD);
+    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), memberType.PLATINA);
+    Member m2 = new Member("Johan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2022-05-20"), memberType.PLATINA);
+    Member m3 = new Member("Stefan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), memberType.STANDARD);
 
     @Test
     void InfoToReceptionistTest() {
@@ -16,11 +16,16 @@ class MemberTest {
         String expected3 = "Stefan är en betalande Standard medlem.";
 
 
-        assertEquals(expected,m1.InfoToReceptionist());
-        assertEquals(expected2,m2.InfoToReceptionist());
-        assertEquals(expected3,m3.InfoToReceptionist());
+        assertEquals(expected, m1.InfoToReceptionist());
+        assertEquals(expected2, m2.InfoToReceptionist());
+        assertEquals(expected3, m3.InfoToReceptionist());
 
 
+    }
+    @Test
+    void logVisit() {
+        String expected = "Niklas, 9001111234 besökte gymmet 2025-10-17";
+        assertEquals(expected, Member.l);
     }
 
     @Test

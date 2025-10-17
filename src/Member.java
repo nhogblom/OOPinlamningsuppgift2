@@ -8,6 +8,10 @@ public class Member extends Person{
     private LocalDate dateOfMostRecentMembershipRenewal;
     private memberType memberType;
 
+    public String logVisit(){
+        return "";
+    }
+
     public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, memberType memberType) {
         super(name, adress, personnummer);
         this.email = email;
