@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,15 +12,32 @@ class RecoverFromFileTest {
     @Test
     void createMemberFromFileDataTest() {
         String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30","Platina"};
+        Member member = RecoverFromFile.createMemberFromFileData(rawMemberData);
         String expectedMemberName = "Fredrik Berggren";
+        String expectedMemberAdress = "Skolgränd 8, 16819 Norrköping";
+        String unexpectedMemberAdress = "Skolgränd 9, 16819 Norrköping";
+        String expectedMemberEmail = "fredde@fakemail.se";
+        String unexpectedMemberEmail = "redde@fakemail.se";
+        String expectedMemberCreationDate = "2019-12-30";
+        String expectedMemberLastUpdatedDate = "2021-12-30";
         String expectedMemberPersonnummer = "851020-6728";
         String unexpectedMemberName = "Stefan Johansson";
         String unexpectedMemberPersonnummer = "890101-1234";
 
-        assertEquals(expectedMemberName, RecoverFromFile.createMemberFromFileData(rawMemberData).getName());
-        assertEquals(expectedMemberPersonnummer, RecoverFromFile.createMemberFromFileData(rawMemberData).getPersonnummer());
-        assertNotEquals(unexpectedMemberName, RecoverFromFile.createMemberFromFileData(rawMemberData).getName());
-        assertNotEquals(unexpectedMemberPersonnummer, RecoverFromFile.createMemberFromFileData(rawMemberData).getPersonnummer());
+        assertEquals(expectedMemberName, member.getName());
+        assertEquals(expectedMemberPersonnummer, member.getPersonnummer());
+        assertNotEquals(unexpectedMemberName, member.getName());
+        assertNotEquals(unexpectedMemberPersonnummer, member.getPersonnummer());
+
+        assertEquals(expectedMemberAdress, member.getAdress());
+        assertNotEquals(unexpectedMemberAdress, member.getAdress());
+
+        assertEquals(expectedMemberEmail, member.getEmail());
+        assertNotEquals(unexpectedMemberEmail, member.getEmail());
+
+        assertEquals(LocalDate.parse(expectedMemberCreationDate), member.getDateOfBecomingMember());
+
+        assertEquals(LocalDate.parse(expectedMemberLastUpdatedDate), member.getDateOfMostRecentMembershipRenewal());
 
     }
 

@@ -51,4 +51,36 @@ public class Member extends Person {
         }
         return this.getName() + " är en före detta medlem.";
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getDateOfBecomingMember() {
+        return dateOfBecomingMember;
+    }
+
+    public void setDateOfBecomingMember(LocalDate dateOfBecomingMember) {
+        this.dateOfBecomingMember = dateOfBecomingMember;
+    }
+
+    public LocalDate getDateOfMostRecentMembershipRenewal() {
+        return dateOfMostRecentMembershipRenewal;
+    }
+
+    public void setDateOfMostRecentMembershipRenewal(LocalDate dateOfMostRecentMembershipRenewal) {
+        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
+    }
+
+    public memberType getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(memberType memberType) {
+        this.memberType = memberType;
+    }
 }
