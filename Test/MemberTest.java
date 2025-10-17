@@ -20,11 +20,11 @@ class MemberTest {
     }
 
     @Test
-    void logVisitTest() {
+    void logVisitStringTest() {
         String expected = "Niklas, 9000001234 besökte gymmet " + LocalDate.now();
         System.out.println(expected);
-        assertEquals(expected, m1.logVisit());
-        assertNotEquals(expected, m2.logVisit());
+        assertEquals(expected, m1.logVisitString());
+        assertNotEquals(expected, m2.logVisitString());
     }
 
     @Test
