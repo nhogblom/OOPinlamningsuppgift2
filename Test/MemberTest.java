@@ -14,19 +14,17 @@ class MemberTest {
         String expected = "Niklas är en betalande Platina medlem.";
         String expected2 = "Johan är en före detta medlem.";
         String expected3 = "Stefan är en betalande Standard medlem.";
-
-
         assertEquals(expected, m1.InfoToReceptionist());
         assertEquals(expected2, m2.InfoToReceptionist());
         assertEquals(expected3, m3.InfoToReceptionist());
-
-
     }
+
     @Test
     void logVisit() {
-        String expected = "Niklas, 9000001234 besökte gymmet "+LocalDate.now().toString();
+        String expected = "Niklas, 9000001234 besökte gymmet " + LocalDate.now().toString();
         System.out.println(expected);
         assertEquals(expected, m1.logVisit());
+        assertNotEquals(expected, m2.logVisit());
     }
 
     @Test
