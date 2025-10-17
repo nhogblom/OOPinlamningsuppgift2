@@ -25,7 +25,6 @@ public class RecoverFromFile {
             member = new Member(name, adress, personnummer, email, dateOfBecommingMember, dateOfMostRecentMembershipRenewal, memberTypeCurrent);
         } catch (Exception e) {
             System.out.println("Fel vid inläsning av användardata.."+e.getMessage());
-
         }
         return member;
     }
@@ -33,12 +32,13 @@ public class RecoverFromFile {
     public static List<Member> readMembersFromFileToList(Scanner sc) {
         List<Member> members = new ArrayList<>();
         String line;
-
-        while ((line = sc.nextLine()) != null) {
+        // skip first row
+        sc.nextLine();
+        while (sc.hasNextLine()) {
+            line = sc.nextLine();
             String[] memberValuesSeparated = new String[7];
             memberValuesSeparated = line.split(";");
-
-            //String name =
+            members.add(createMemberFromFileData(memberValuesSeparated));
         }
         return members;
     }
