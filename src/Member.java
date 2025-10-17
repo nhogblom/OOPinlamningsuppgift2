@@ -26,6 +26,9 @@ public class Member extends Person{
     }
 
     public String InfoToReceptionist() {
-        return "";
+        if (this.membershipValid()){
+            return this.getName()+" är en betalande "+this.memberType.getPrintableName()+" medlem.";
+        }
+        return this.getName()+" är en före detta medlem.";
     }
 }
