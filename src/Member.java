@@ -16,9 +16,11 @@ public class Member extends Person {
     }
 
     public void logVisit() {
+        String filepath = "src/membersactivity/";
         String filename = this.getPersonnummer()+".txt";
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filename,true))) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filepath+filename,true))) {
             pw.println(logVisitString());
+            pw.flush();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
