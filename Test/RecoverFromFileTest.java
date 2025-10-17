@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RecoverTool {
+class RecoverFromFileTest {
     List<Member> membersList;
 
     @Test
@@ -13,7 +13,7 @@ class RecoverTool {
         String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30","Platina"};
         String expectedMemberName = "Fredrik Berggren";
         String expectedMemberPersonnummer = "851020-6728";
-        String unexpectedMemberName = "Fredrik Johansson";
+        String unexpectedMemberName = "Stefan Johansson";
         String unexpectedMemberPersonnummer = "890101-1234";
 
         assertEquals(expectedMemberName, RecoverFromFile.createMemberFromFileData(rawMemberData).getName());
