@@ -7,7 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RecoverFromFile {
+public class MemberService {
+
+    public static Member search(String searchString, List<Member> memberList) {
+        Member member = null;
+        for (int i = 0; i < memberList.size(); i++) {
+            if (searchString.toLowerCase().equals(memberList.get(i).getName().toLowerCase())) {
+                return memberList.get(i);
+            }else if (searchString.equals(memberList.get(i).getPersonnummer())) {
+                return memberList.get(i);
+            }
+        }
+        return member;
+    }
 
     public static Member createMemberFromFileData(String[] rawMemberData) {
         Member member = null;

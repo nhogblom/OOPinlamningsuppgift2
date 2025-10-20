@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class BestGymEver {
     String filename = "src/BestGymEver/gym_medlemmar.txt";
     List<Member> members = null;
+    MemberService  memberService = new MemberService();
 
     public void logVisit(Member member){
 
@@ -19,7 +20,7 @@ public class BestGymEver {
     public BestGymEver() {
 
         try (Scanner sc = new Scanner(new File(filename))) {
-            members = RecoverFromFile.readMembersFromFileToList(sc);
+            members = MemberService.readMembersFromFileToList(sc);
         } catch (FileNotFoundException e) {
             System.out.println("Kunde inte hitta medlemsregistret.");
         }
@@ -30,7 +31,7 @@ public class BestGymEver {
                 IO.println("Användaren valde att avsluta programmet.\n");
                 break;
             }
-            Member member = SearchMemberList.search(match, members);
+            Member member = memberService.search(match, members);
             if (member == null) {
                 IO.println("Ingen träff, försök igen.");
             } else {
