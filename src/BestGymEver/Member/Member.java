@@ -9,11 +9,27 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member extends Person {
+public class Member {
+    private String name;
+    private String adress;
+    private String personnummer;
     private String email;
     private LocalDate dateOfBecomingMember;
     private LocalDate dateOfMostRecentMembershipRenewal;
     private MemberType memberType;
+
+    public Member() {
+    }
+
+    public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType) {
+        this.name = name;
+        this.adress = adress;
+        this.personnummer = personnummer;
+        this.email = email;
+        this.dateOfBecomingMember = dateOfBecomingMember;
+        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
+        this.memberType = memberType;
+    }
 
     public String logVisitString() {
         return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDate.now();
@@ -21,8 +37,8 @@ public class Member extends Person {
 
     public void logVisit() {
         String filepath = "src/BestGymEver/membersactivity/";
-        String filename = this.getPersonnummer()+".txt";
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filepath+filename,true))) {
+        String filename = this.getPersonnummer() + ".txt";
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filepath + filename, true))) {
             pw.println(logVisitString());
             pw.flush();
         } catch (FileNotFoundException e) {
@@ -32,13 +48,6 @@ public class Member extends Person {
         }
     }
 
-    public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType) {
-        super(name, adress, personnummer);
-        this.email = email;
-        this.dateOfBecomingMember = dateOfBecomingMember;
-        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
-        this.memberType = memberType;
-    }
 
     public boolean membershipValid() {
         Period period = Period.between(dateOfMostRecentMembershipRenewal, LocalDate.now());
@@ -60,31 +69,29 @@ public class Member extends Person {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public LocalDate getDateOfBecomingMember() {
         return dateOfBecomingMember;
     }
 
-    public void setDateOfBecomingMember(LocalDate dateOfBecomingMember) {
-        this.dateOfBecomingMember = dateOfBecomingMember;
-    }
 
     public LocalDate getDateOfMostRecentMembershipRenewal() {
         return dateOfMostRecentMembershipRenewal;
     }
 
-    public void setDateOfMostRecentMembershipRenewal(LocalDate dateOfMostRecentMembershipRenewal) {
-        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
+
+    public String getName() {
+        return name;
     }
 
-    public MemberType getMemberType() {
-        return memberType;
+
+    public String getAdress() {
+        return adress;
     }
 
-    public void setMemberType(MemberType memberType) {
-        this.memberType = memberType;
+
+    public String getPersonnummer() {
+        return personnummer;
     }
+
 }
