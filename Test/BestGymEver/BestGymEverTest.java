@@ -1,6 +1,0 @@
-package BestGymEver;
-
-class BestGymEverTest {
-
-
-}

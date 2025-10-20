@@ -1,6 +1,6 @@
-package BestGymEver;
+package BestGymEver.Member;
 
-import BestGymEver.Member.Member;
+import BestGymEver.MemberType;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
