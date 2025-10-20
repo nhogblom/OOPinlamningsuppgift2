@@ -12,10 +12,21 @@ public class BestGymEver {
     String filename = "src/BestGymEver/Resources/gym_medlemmar.txt";
     List<Member> members = null;
     MemberService memberService = new MemberService();
+    Scanner sc = new Scanner(System.in);
 
+    public String collectStringFromTerminal(String prompt) {
+        String line = "";
+        System.out.println(prompt);
+        if (sc.hasNextLine()) {
+            if ((line = sc.nextLine()) == null || line.equals("quit")) {
+                System.out.println("Avslutar program");
+                System.exit(0);
+            }
+        }
+        return line;
+    }
 
     public BestGymEver() {
-
         try (Scanner sc = new Scanner(new File(filename))) {
             members = memberService.readMembersFromFileToList(sc);
         } catch (FileNotFoundException e) {
@@ -23,11 +34,7 @@ public class BestGymEver {
         }
 
         while (true && members != null) {
-            String match = IO.readln("Skriv in ett namn eller personnummer:\n");
-            if (match.equals("quit")) {
-                IO.println("Användaren valde att avsluta programmet.\n");
-                break;
-            }
+            String match = collectStringFromTerminal("Skriv in ett namn eller personnummer:");
             Member member = memberService.search(match, members);
             if (member == null) {
                 IO.println("Ingen träff, försök igen.");
