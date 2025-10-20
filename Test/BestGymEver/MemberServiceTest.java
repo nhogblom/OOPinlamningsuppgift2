@@ -1,6 +1,7 @@
 package BestGymEver;
 
 import BestGymEver.Member.Member;
+import BestGymEver.Member.MemberService;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -12,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
     List<Member> membersList;
+    MemberService mS = new MemberService();
 
     @Test
     void createMemberFromFileDataTest() {
         String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30","Platina"};
-        Member member = MemberService.createMemberFromFileData(rawMemberData);
+        Member member = mS.createMemberFromFileData(rawMemberData);
         String expectedMemberName = "Fredrik Berggren";
         String expectedMemberAdress = "Skolgränd 8, 16819 Norrköping";
         String unexpectedMemberAdress = "Skolgränd 9, 16819 Norrköping";
@@ -52,7 +54,7 @@ class MemberServiceTest {
                 "Astrid Larsson;Järnvägsvägen 5, 64230 Gävle;asta@fakemail.de;540815-4382;2021-12-04;2022-12-04;Platina";
         Scanner sc = new Scanner(exampleRecoveryFileTextForTwoUsers);
 
-        membersList = MemberService.readMembersFromFileToList(sc);
+        membersList = mS.readMembersFromFileToList(sc);
 
         assertEquals(2, membersList.size());
         assertNotEquals(1, membersList.size());
@@ -65,8 +67,6 @@ class MemberServiceTest {
         Member m1 = new Member("Niklas","Borrvägen","9000001234","nhogblom@gmail.com",LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
         Member m2 = new Member("Albin","Borrvägen","1900000124","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
         List<Member> members = new ArrayList<>();
-        MemberService mS = new MemberService();
-
         members.add(m1);
         members.add(m2);
         assertEquals(m1, mS.search("Niklas",members));

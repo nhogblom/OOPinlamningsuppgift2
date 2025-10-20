@@ -1,6 +1,6 @@
-package BestGymEver;
+package BestGymEver.Member;
 
-import BestGymEver.Member.Member;
+import BestGymEver.MemberType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MemberService {
 
-    public static Member search(String searchString, List<Member> memberList) {
+    public Member search(String searchString, List<Member> memberList) {
         Member member = null;
         for (int i = 0; i < memberList.size(); i++) {
             if (searchString.toLowerCase().equals(memberList.get(i).getName().toLowerCase())) {
@@ -21,7 +21,7 @@ public class MemberService {
         return member;
     }
 
-    public static Member createMemberFromFileData(String[] rawMemberData) {
+    public Member createMemberFromFileData(String[] rawMemberData) {
         Member member = null;
         try {
             String name = rawMemberData[0].trim();
@@ -44,7 +44,7 @@ public class MemberService {
         return member;
     }
 
-    public static List<Member> readMembersFromFileToList(Scanner sc) {
+    public List<Member> readMembersFromFileToList(Scanner sc) {
         List<Member> members = new ArrayList<>();
         String line;
         // skip first row
@@ -53,7 +53,7 @@ public class MemberService {
             line = sc.nextLine();
             String[] memberValuesSeparated = new String[7];
             memberValuesSeparated = line.split(";");
-            members.add(createMemberFromFileData(memberValuesSeparated));
+            members.add(this.createMemberFromFileData(memberValuesSeparated));
         }
         return members;
     }

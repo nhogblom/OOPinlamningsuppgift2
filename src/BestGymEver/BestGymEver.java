@@ -1,6 +1,7 @@
 package BestGymEver;
 
 import BestGymEver.Member.Member;
+import BestGymEver.Member.MemberService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,26 +9,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BestGymEver {
-    String filename = "src/BestGymEver/gym_medlemmar.txt";
+    String filename = "src/BestGymEver/Resources/gym_medlemmar.txt";
     List<Member> members = null;
-    MemberService  memberService = new MemberService();
-
-    public void logVisit(Member member){
-
-    }
+    MemberService memberService = new MemberService();
 
 
     public BestGymEver() {
 
         try (Scanner sc = new Scanner(new File(filename))) {
-            members = MemberService.readMembersFromFileToList(sc);
+            members = memberService.readMembersFromFileToList(sc);
         } catch (FileNotFoundException e) {
             System.out.println("Kunde inte hitta medlemsregistret.");
         }
 
         while (true && members != null) {
             String match = IO.readln("Skriv in ett namn eller personnummer:\n");
-            if  (match.equals("quit")) {
+            if (match.equals("quit")) {
                 IO.println("Användaren valde att avsluta programmet.\n");
                 break;
             }
