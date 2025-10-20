@@ -1,4 +1,4 @@
-package BestGymEver.Member;
+package BestGymEver.member;
 
 import BestGymEver.MemberType;
 import org.junit.jupiter.api.Test;
