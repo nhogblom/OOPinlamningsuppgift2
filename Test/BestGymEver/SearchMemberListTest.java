@@ -1,3 +1,6 @@
+package BestGymEver;
+
+import BestGymEver.Member.Member;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -8,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SearchMemberListTest {
 
-    Member m1 = new Member("Niklas","Borrvägen","9000001234","nhogblom@gmail.com",LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"),memberType.PLATINA);
-    Member m2 = new Member("Albin","Borrvägen","1900000124","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"),memberType.PLATINA);
+    Member m1 = new Member("Niklas","Borrvägen","9000001234","nhogblom@gmail.com",LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
+    Member m2 = new Member("Albin","Borrvägen","1900000124","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
     List<Member> members = new ArrayList<>();
 
 
@@ -18,7 +21,7 @@ class SearchMemberListTest {
     void searchTest() {
         members.add(m1);
         members.add(m2);
-        assertEquals(m1,SearchMemberList.search("Niklas",members));
+        assertEquals(m1, SearchMemberList.search("Niklas",members));
         assertEquals(m2,SearchMemberList.search("Albin",members));
         assertNotEquals(m2,SearchMemberList.search("Niklas",members));
         assertNotEquals(m1,SearchMemberList.search("Albin",members));

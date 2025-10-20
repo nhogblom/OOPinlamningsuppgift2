@@ -1,3 +1,7 @@
+package BestGymEver.Member;
+
+import BestGymEver.MemberType;
+
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,14 +13,14 @@ public class Member extends Person {
     private String email;
     private LocalDate dateOfBecomingMember;
     private LocalDate dateOfMostRecentMembershipRenewal;
-    private memberType memberType;
+    private MemberType memberType;
 
     public String logVisitString() {
         return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDate.now();
     }
 
     public void logVisit() {
-        String filepath = "src/membersactivity/";
+        String filepath = "src/BestGymEver/membersactivity/";
         String filename = this.getPersonnummer()+".txt";
         try (PrintWriter pw = new PrintWriter(new FileWriter(filepath+filename,true))) {
             pw.println(logVisitString());
@@ -28,7 +32,7 @@ public class Member extends Person {
         }
     }
 
-    public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, memberType memberType) {
+    public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType) {
         super(name, adress, personnummer);
         this.email = email;
         this.dateOfBecomingMember = dateOfBecomingMember;
@@ -76,11 +80,11 @@ public class Member extends Person {
         this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
     }
 
-    public memberType getMemberType() {
+    public MemberType getMemberType() {
         return memberType;
     }
 
-    public void setMemberType(memberType memberType) {
+    public void setMemberType(MemberType memberType) {
         this.memberType = memberType;
     }
 }

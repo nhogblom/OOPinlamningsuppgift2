@@ -1,3 +1,6 @@
+package BestGymEver;
+
+import BestGymEver.Member.Member;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -5,9 +8,9 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
-    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), memberType.PLATINA);
-    Member m2 = new Member("Johan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2022-05-20"), memberType.PLATINA);
-    Member m3 = new Member("Stefan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), memberType.STANDARD);
+    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA);
+    Member m2 = new Member("Johan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2022-05-20"), MemberType.PLATINA);
+    Member m3 = new Member("Stefan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.STANDARD);
 
     @Test
     void InfoToReceptionistTest() {

@@ -1,3 +1,7 @@
+package BestGymEver;
+
+import BestGymEver.Member.Member;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +19,8 @@ public class RecoverFromFile {
             LocalDate dateOfBecomingMember = LocalDate.parse(rawMemberData[4].trim());
             LocalDate dateOfMostRecentMembershipRenewal = LocalDate.parse(rawMemberData[5].trim());
             String memberTypeString = rawMemberData[6].trim();
-            memberType memberTypeCurrent = null;
-            for (memberType mType : memberType.values()) {
+            MemberType memberTypeCurrent = null;
+            for (MemberType mType : MemberType.values()) {
                 if (mType.name().equalsIgnoreCase(memberTypeString)) {
                     memberTypeCurrent = mType;
                 }

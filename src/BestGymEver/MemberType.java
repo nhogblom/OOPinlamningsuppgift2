@@ -1,10 +1,12 @@
-public enum memberType {
+package BestGymEver;
+
+public enum MemberType {
     PLATINA("Platina"),
     GULD("Guld"),
     STANDARD("Standard");
 
     private String printableName;
-    memberType(String printableName) {
+    MemberType(String printableName) {
         this.printableName = printableName;
     }
 

@@ -1,10 +1,14 @@
+package BestGymEver;
+
+import BestGymEver.Member.Member;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
 public class BestGymEver {
-    String filename = "src/gym_medlemmar.txt";
+    String filename = "src/BestGymEver/gym_medlemmar.txt";
     List<Member> members = null;
 
     public void logVisit(Member member){
