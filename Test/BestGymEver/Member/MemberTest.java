@@ -4,6 +4,8 @@ import BestGymEver.MemberType;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +26,8 @@ class MemberTest {
 
     @Test
     void logVisitStringTest() {
-        String expected = "Niklas, 9000001234 besökte gymmet " + LocalDate.now();
+        DateTimeFormatter dtf =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String expected = "Niklas, 9000001234 besökte gymmet " + LocalDateTime.now().format(dtf);
         System.out.println(expected);
         assertEquals(expected, m1.logVisitString());
         assertNotEquals(expected, m2.logVisitString());
