@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BestGymEver {
-    String filename = "src/BestGymEver/Resources/gym_medlemmar.txt";
+    String filename = "Resources/gym_medlemmar.txt";
     List<Member> members = null;
     MemberService memberService = new MemberService();
     Scanner sc = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class BestGymEver {
             System.out.println("Kunde inte hitta medlemsregistret.");
         }
 
-        while (true && members != null) {
+        while (members != null) {
 
             String match = collectStringFromTerminal("Skriv in ett namn eller personnummer:");
             Member member = memberService.search(match, members);

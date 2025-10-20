@@ -2,24 +2,24 @@ package BestGymEver.Member;
 
 import BestGymEver.MemberType;
 
-import java.io.FileNotFoundException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class Member {
     private String name;
     private String adress;
     private String personnummer;
     private String email;
-    private LocalDate dateOfBecomingMember;
+    private final LocalDate dateOfBecomingMember;
     private LocalDate dateOfMostRecentMembershipRenewal;
     private MemberType memberType;
 
-    public Member() {
-    }
 
     public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType) {
         this.name = name;
@@ -32,7 +32,8 @@ public class Member {
     }
 
     public String logVisitString() {
-        return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDateTime.now().format(dtf);
     }
 
     public void logVisit() {
@@ -42,8 +43,6 @@ public class Member {
             pw.println(logVisitString());
             pw.flush();
             IO.println("Besök registrerades.");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -52,11 +51,7 @@ public class Member {
 
     public boolean membershipValid() {
         Period period = Period.between(dateOfMostRecentMembershipRenewal, LocalDate.now());
-        if (period.toTotalMonths() <= 12) {
-            return true;
-        } else {
-            return false;
-        }
+        return period.toTotalMonths() <= 12;
     }
 
     public String InfoToReceptionist() {
