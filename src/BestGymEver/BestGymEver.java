@@ -34,15 +34,16 @@ public class BestGymEver {
         }
 
         while (true && members != null) {
+
             String match = collectStringFromTerminal("Skriv in ett namn eller personnummer:");
             Member member = memberService.search(match, members);
+
             if (member == null) {
                 IO.println("Ingen träff, försök igen.");
             } else {
                 IO.println(member.InfoToReceptionist());
                 if (member.membershipValid()) {
                     member.logVisit();
-                    IO.println("Besök registrerades.");
                 }
             }
         }

@@ -41,6 +41,7 @@ public class Member {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filepath + filename, true))) {
             pw.println(logVisitString());
             pw.flush();
+            IO.println("Besök registrerades.");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
