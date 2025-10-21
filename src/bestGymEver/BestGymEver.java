@@ -1,7 +1,7 @@
-package BestGymEver;
+package bestGymEver;
 
-import BestGymEver.member.Member;
-import BestGymEver.member.MemberService;
+import bestGymEver.member.Member;
+import bestGymEver.member.MemberService;
 
 import java.io.File;
 import java.io.FileNotFoundException;

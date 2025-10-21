@@ -1,6 +1,6 @@
-package BestGymEver.member;
+package bestGymEver.member;
 
-import BestGymEver.MemberType;
+import bestGymEver.MemberType;
 
 
 import java.io.FileWriter;

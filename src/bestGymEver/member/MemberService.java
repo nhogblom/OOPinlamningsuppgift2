@@ -1,13 +1,25 @@
-package BestGymEver.member;
+package bestGymEver.member;
 
-import BestGymEver.MemberType;
+import bestGymEver.MemberType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MemberService {
+    private final boolean isTest;
+
+    public MemberService() {
+        this.isTest = false;
+    }
+
+    public MemberService(boolean isTest) {
+        this.isTest = isTest;
+    }
 
     public Member search(String searchString, List<Member> memberList) {
         Member member = null;
@@ -57,4 +69,23 @@ public class MemberService {
         }
         return members;
     }
+
+    public List<Member> readMembersFromFileToList(Path path) throws FileNotFoundException {
+        List<Member> members = new ArrayList<>();
+        String line;
+        try (Scanner sc = new Scanner(new File(path.toString()))){
+            sc.nextLine();
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                String[] memberValuesSeparated = new String[7];
+                memberValuesSeparated = line.split(";");
+                members.add(this.createMemberFromFileData(memberValuesSeparated));
+            }
+        }
+        // skip first row
+
+        return members;
+    }
+
+
 }

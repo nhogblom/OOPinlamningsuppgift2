@@ -1,4 +1,4 @@
-package BestGymEver;
+package bestGymEver;
 
 public enum MemberType {
     PLATINA("Platina"),

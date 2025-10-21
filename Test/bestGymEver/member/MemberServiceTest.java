@@ -1,8 +1,11 @@
-package BestGymEver.member;
+package bestGymEver.member;
 
-import BestGymEver.MemberType;
+import bestGymEver.MemberType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +14,21 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
+
     List<Member> membersList;
-    MemberService mS = new MemberService();
+    MemberService mS = new MemberService(true);
+
+    @BeforeEach
+    void setUp() {
+        membersList = null;
+        mS = null;
+    }
 
     @Test
     void createMemberFromFileDataTest() {
-        String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30","Platina"};
+        mS = new MemberService(true);
+
+        String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30", "Platina"};
         Member member = mS.createMemberFromFileData(rawMemberData);
         String expectedMemberName = "Fredrik Berggren";
         String expectedMemberAdress = "Skolgränd 8, 16819 Norrköping";
@@ -48,6 +60,8 @@ class MemberServiceTest {
 
     @Test
     void readMembersFromFileTest() {
+        mS = new MemberService(true);
+
         String exampleRecoveryFileTextForTwoUsers = "Namn;Adress;Mailadress;Personnummer;Datum_köpt_gymmedlemskap;Datum_senast_uppdaterad;Medlemsnivå\n" +
                 "Fredrik Berggren;Skolgränd 8, 16819 Norrköping;fredde@fakemail.se;851020-6728;2019-12-30;2021-12-30;Platina\n" +
                 "Astrid Larsson;Järnvägsvägen 5, 64230 Gävle;asta@fakemail.de;540815-4382;2021-12-04;2022-12-04;Platina";
@@ -62,18 +76,42 @@ class MemberServiceTest {
     }
 
     @Test
+    void readMembersFromFileForRealTest() throws FileNotFoundException {
+        String testFilePath = "testResources/gym_medlemmar.txt";
+        Path path = Path.of(testFilePath);
+        String incorrectFilePath = "/something-random";
+        Path incorrectPath = Path.of(incorrectFilePath);
+
+        membersList = mS.readMembersFromFileToList(path);
+        int actual = membersList.size();
+        int expected = 2;
+        int unexpected = 1;
+        int anotherUnexpected = 3;
+
+
+        assertEquals(expected, actual);
+        assertNotEquals(unexpected, actual);
+        assertNotEquals(anotherUnexpected, actual);
+        assertDoesNotThrow(() -> { mS.readMembersFromFileToList(path); });
+        assertThrows(FileNotFoundException.class, () -> { mS.readMembersFromFileToList(incorrectPath); });
+
+    }
+
+    @Test
     void searchTest() {
-        Member m1 = new Member("Niklas","Borrvägen","9000001234","nhogblom@gmail.com",LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
-        Member m2 = new Member("Albin","Borrvägen","1900000124","nhogblom@gmail.com", LocalDate.parse("2020-05-20"),LocalDate.parse("2020-05-20"), MemberType.PLATINA);
+        mS = new MemberService(true);
+
+        Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2020-05-20"), MemberType.PLATINA);
+        Member m2 = new Member("Albin", "Borrvägen", "1900000124", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2020-05-20"), MemberType.PLATINA);
         List<Member> members = new ArrayList<>();
         members.add(m1);
         members.add(m2);
-        assertEquals(m1, mS.search("Niklas",members));
-        assertEquals(m2, mS.search("Albin",members));
-        assertNotEquals(m2, mS.search("Niklas",members));
-        assertNotEquals(m1, mS.search("Albin",members));
-        assertEquals(m1, mS.search("9000001234",members));
-        assertEquals(m2, mS.search("1900000124",members));
-        assertNotEquals(m1, mS.search("Ingen heter så här",members));
+        assertEquals(m1, mS.search("Niklas", members));
+        assertEquals(m2, mS.search("Albin", members));
+        assertNotEquals(m2, mS.search("Niklas", members));
+        assertNotEquals(m1, mS.search("Albin", members));
+        assertEquals(m1, mS.search("9000001234", members));
+        assertEquals(m2, mS.search("1900000124", members));
+        assertNotEquals(m1, mS.search("Ingen heter så här", members));
     }
 }
