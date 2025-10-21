@@ -62,9 +62,7 @@ public class Member {
         }
     }
 
-    public void writeToFile(Path path, String message){
 
-    }
 
 
     public boolean membershipValid() {

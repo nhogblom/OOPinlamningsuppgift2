@@ -1,8 +1,10 @@
 package bestGymEver.member;
 
+import bestGymEver.IOUtil;
 import bestGymEver.MemberType;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
@@ -11,7 +13,7 @@ public class IOUtilTest {
     IOUtil ioUtil = new IOUtil();
 
     @Test
-    void writeToFileTest(){
+    void writeToFileTest() throws IOException {
 
         Path pathOfTestFile = Path.of("testResources/writeTest.txt");
 
