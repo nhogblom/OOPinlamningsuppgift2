@@ -10,9 +10,9 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
-    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA);
-    Member m2 = new Member("Johan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2022-05-20"), MemberType.PLATINA);
-    Member m3 = new Member("Stefan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.STANDARD);
+    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA,true);
+    Member m2 = new Member("Johan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2022-05-20"), MemberType.PLATINA),true;
+    Member m3 = new Member("Stefan", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.STANDARD,true);
 
     @Test
     void InfoToReceptionistTest() {
@@ -37,4 +37,7 @@ class MemberTest {
         assertTrue(m1.membershipValid());
         assertFalse(m2.membershipValid());
     }
+
+    @Test
+    void
 }

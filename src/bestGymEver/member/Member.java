@@ -19,6 +19,7 @@ public class Member {
     private final LocalDate dateOfBecomingMember;
     private LocalDate dateOfMostRecentMembershipRenewal;
     private MemberType memberType;
+    private final boolean isTest;
 
 
     public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType) {
@@ -29,6 +30,18 @@ public class Member {
         this.dateOfBecomingMember = dateOfBecomingMember;
         this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
         this.memberType = memberType;
+        this.isTest = false;
+    }
+
+    public Member(String name, String adress, String personnummer, String email, LocalDate dateOfBecomingMember, LocalDate dateOfMostRecentMembershipRenewal, MemberType memberType, boolean isTest) {
+        this.name = name;
+        this.adress = adress;
+        this.personnummer = personnummer;
+        this.email = email;
+        this.dateOfBecomingMember = dateOfBecomingMember;
+        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
+        this.memberType = memberType;
+        this.isTest = isTest;
     }
 
     public String logVisitString() {
