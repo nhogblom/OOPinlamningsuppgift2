@@ -24,6 +24,36 @@ class MemberServiceTest {
         mS = null;
     }
 
+
+    @Test
+    void readMembersFromFileForRealTest() throws IOException, InvalidInputParameterForMember {
+        mS = new MemberService();
+
+        String testFilePath = "testResources/gym_medlemmar.txt";
+        Path path = Path.of(testFilePath);
+        String incorrectFilePath = "/something-random";
+        Path incorrectPath = Path.of(incorrectFilePath);
+
+        membersList = mS.readMembersFromFileToList(path);
+
+        int actual = membersList.size();
+        int expected = 2;
+        int unexpected = 1;
+        int anotherUnexpected = 3;
+
+
+        assertEquals(expected, actual);
+        assertNotEquals(unexpected, actual);
+        assertNotEquals(anotherUnexpected, actual);
+        assertDoesNotThrow(() -> {
+            mS.readMembersFromFileToList(path);
+        });
+        assertThrows(FileNotFoundException.class, () -> {
+            mS.readMembersFromFileToList(incorrectPath);
+        });
+
+    }
+
     @Test
     void createMemberFromFileDataTest() throws InvalidInputParameterForMember {
         mS = new MemberService();
@@ -58,35 +88,10 @@ class MemberServiceTest {
         assertEquals(LocalDate.parse(expectedMemberLastUpdatedDate), member.getDateOfMostRecentMembershipRenewal());
 
         assertThrows(InvalidInputParameterForMember.class, () -> mS.createMemberFromFileData(rawMemberDataFaulty));
-        assertDoesNotThrow( () -> mS.createMemberFromFileData(rawMemberData));
+        assertDoesNotThrow(() -> mS.createMemberFromFileData(rawMemberData));
 
     }
 
-
-    @Test
-    void readMembersFromFileForRealTest() throws IOException, InvalidInputParameterForMember {
-        mS = new MemberService();
-
-        String testFilePath = "testResources/gym_medlemmar.txt";
-        Path path = Path.of(testFilePath);
-        String incorrectFilePath = "/something-random";
-        Path incorrectPath = Path.of(incorrectFilePath);
-
-        membersList = mS.readMembersFromFileToList(path);
-
-        int actual = membersList.size();
-        int expected = 2;
-        int unexpected = 1;
-        int anotherUnexpected = 3;
-
-
-        assertEquals(expected, actual);
-        assertNotEquals(unexpected, actual);
-        assertNotEquals(anotherUnexpected, actual);
-        assertDoesNotThrow(() -> { mS.readMembersFromFileToList(path); });
-        assertThrows(FileNotFoundException.class, () -> { mS.readMembersFromFileToList(incorrectPath); });
-
-    }
 
     @Test
     void searchTest() {
