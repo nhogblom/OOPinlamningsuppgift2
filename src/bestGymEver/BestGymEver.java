@@ -3,13 +3,13 @@ package bestGymEver;
 import bestGymEver.member.Member;
 import bestGymEver.member.MemberService;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
 public class BestGymEver {
-    String filename = "Resources/gym_medlemmar.txt";
+    Path path = Path.of("Resources/gym_medlemmar.txt");
     List<Member> members = null;
     MemberService memberService = new MemberService();
     Scanner sc = new Scanner(System.in);
@@ -27,10 +27,11 @@ public class BestGymEver {
     }
 
     public BestGymEver() {
-        try (Scanner sc = new Scanner(new File(filename))) {
-            members = memberService.readMembersFromFileToList(sc);
+
+        try {
+            members = memberService.readMembersFromFileToList(path);
         } catch (FileNotFoundException e) {
-            System.out.println("Kunde inte hitta medlemsregistret.");
+            System.out.println("File not found.");
         }
 
         while (members != null) {

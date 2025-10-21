@@ -56,25 +56,15 @@ public class MemberService {
         return member;
     }
 
-    public List<Member> readMembersFromFileToList(Scanner sc) {
-        List<Member> members = new ArrayList<>();
-        String line;
-        // skip first row
-        sc.nextLine();
-        while (sc.hasNextLine()) {
-            line = sc.nextLine();
-            String[] memberValuesSeparated = new String[7];
-            memberValuesSeparated = line.split(";");
-            members.add(this.createMemberFromFileData(memberValuesSeparated));
-        }
-        return members;
-    }
+
 
     public List<Member> readMembersFromFileToList(Path path) throws FileNotFoundException {
         List<Member> members = new ArrayList<>();
         String line;
         try (Scanner sc = new Scanner(new File(path.toString()))){
+            // skip first row
             sc.nextLine();
+
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 String[] memberValuesSeparated = new String[7];
@@ -82,7 +72,6 @@ public class MemberService {
                 members.add(this.createMemberFromFileData(memberValuesSeparated));
             }
         }
-        // skip first row
 
         return members;
     }

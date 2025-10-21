@@ -58,31 +58,18 @@ class MemberServiceTest {
 
     }
 
-    @Test
-    void readMembersFromFileTest() {
-        mS = new MemberService(true);
-
-        String exampleRecoveryFileTextForTwoUsers = "Namn;Adress;Mailadress;Personnummer;Datum_köpt_gymmedlemskap;Datum_senast_uppdaterad;Medlemsnivå\n" +
-                "Fredrik Berggren;Skolgränd 8, 16819 Norrköping;fredde@fakemail.se;851020-6728;2019-12-30;2021-12-30;Platina\n" +
-                "Astrid Larsson;Järnvägsvägen 5, 64230 Gävle;asta@fakemail.de;540815-4382;2021-12-04;2022-12-04;Platina";
-        Scanner sc = new Scanner(exampleRecoveryFileTextForTwoUsers);
-
-        membersList = mS.readMembersFromFileToList(sc);
-
-        assertEquals(2, membersList.size());
-        assertNotEquals(1, membersList.size());
-        assertNotEquals(3, membersList.size());
-
-    }
 
     @Test
     void readMembersFromFileForRealTest() throws FileNotFoundException {
+        mS = new MemberService(true);
+
         String testFilePath = "testResources/gym_medlemmar.txt";
         Path path = Path.of(testFilePath);
         String incorrectFilePath = "/something-random";
         Path incorrectPath = Path.of(incorrectFilePath);
 
         membersList = mS.readMembersFromFileToList(path);
+
         int actual = membersList.size();
         int expected = 2;
         int unexpected = 1;
