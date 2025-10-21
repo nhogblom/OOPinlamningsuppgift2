@@ -26,7 +26,7 @@ class MemberServiceTest {
 
 
     @Test
-    void readMembersFromFileForRealTest() throws IOException, InvalidInputParameterForMember {
+    void readMembersFromFileTest() throws IOException, InvalidInputParameterForMember {
         mS = new MemberService();
 
         String testFilePath = "testResources/gym_medlemmar.txt";
