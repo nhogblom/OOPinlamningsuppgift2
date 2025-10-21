@@ -55,12 +55,12 @@ class MemberServiceTest {
     }
 
     @Test
-    void createMemberFromFileDataTest() throws InvalidInputParameterForMember {
+    void createMemberFromStringArrayTest() throws InvalidInputParameterForMember {
         mS = new MemberService();
 
         String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30", "Platina"};
         String[] rawMemberDataFaulty = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30korv", "Platina"};
-        Member member = mS.createMemberFromFileData(rawMemberData);
+        Member member = mS.createMemberFromStringArray(rawMemberData);
         String expectedMemberName = "Fredrik Berggren";
         String expectedMemberAdress = "Skolgränd 8, 16819 Norrköping";
         String unexpectedMemberAdress = "Skolgränd 9, 16819 Norrköping";
@@ -87,8 +87,8 @@ class MemberServiceTest {
 
         assertEquals(LocalDate.parse(expectedMemberLastUpdatedDate), member.getDateOfMostRecentMembershipRenewal());
 
-        assertThrows(InvalidInputParameterForMember.class, () -> mS.createMemberFromFileData(rawMemberDataFaulty));
-        assertDoesNotThrow(() -> mS.createMemberFromFileData(rawMemberData));
+        assertThrows(InvalidInputParameterForMember.class, () -> mS.createMemberFromStringArray(rawMemberDataFaulty));
+        assertDoesNotThrow(() -> mS.createMemberFromStringArray(rawMemberData));
 
     }
 

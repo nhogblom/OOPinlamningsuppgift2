@@ -23,7 +23,7 @@ public class MemberService {
         return member;
     }
 
-    public Member createMemberFromFileData(String[] rawMemberData) throws InvalidInputParameterForMember{
+    public Member createMemberFromStringArray(String[] rawMemberData) throws InvalidInputParameterForMember{
         Member member = null;
         try {
             String name = rawMemberData[0].trim();
@@ -56,7 +56,7 @@ public class MemberService {
         allTheLines.removeFirst();
         for (String line : allTheLines) {
             String[] memberValuesSeparated = line.split(";");
-            members.add(createMemberFromFileData(memberValuesSeparated));
+            members.add(createMemberFromStringArray(memberValuesSeparated));
         }
         return members;
     }
