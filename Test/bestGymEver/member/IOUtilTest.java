@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -37,13 +38,17 @@ public class IOUtilTest {
 
     }
 
+    public String stringListToString(List<String> listOfStringToReturn) {
+        return listOfStringToReturn.toString();
+    }
+
     @Test
-    void readFromFileTest(){
+    void readFromFileTest() throws IOException {
         Path pathOfTestFile = Path.of("testResources/readTest.txt");
 
-        String expected = "Det\nhär\nbara\nett\ntest!";
+        String expected = "[Det, här, är, bara, ett, test!]";
         String unexpected = "Något annat";
-        String actual = ioUtil.readFile(pathOfTestFile);
+        String actual = stringListToString(ioUtil.readFromFile(pathOfTestFile));
 
         assertEquals(expected,actual);
         assertNotEquals(unexpected,actual);

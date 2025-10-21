@@ -2,6 +2,8 @@ package bestGymEver;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IOUtil {
 
@@ -22,4 +24,17 @@ public class IOUtil {
         }
         return stringToReturn;
     }
+
+    public List<String> readFromFile(Path path) throws IOException {
+        List<String> listOfStringToReturn = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(path.toString()))){
+            String line;
+            while ((line = br.readLine()) != null){
+                listOfStringToReturn.add(line);
+            }
+        }
+        return listOfStringToReturn;
+    }
+
+
 }
