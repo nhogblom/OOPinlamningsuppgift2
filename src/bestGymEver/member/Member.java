@@ -6,6 +6,7 @@ import bestGymEver.MemberType;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -59,6 +60,10 @@ public class Member {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void writeToFile(Path path, String message){
+
     }
 
 

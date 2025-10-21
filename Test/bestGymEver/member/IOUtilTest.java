@@ -1,0 +1,25 @@
+package bestGymEver.member;
+
+import bestGymEver.MemberType;
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+
+public class IOUtilTest {
+    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA,true);
+
+
+    @Test
+    void writeToFileTest(){
+
+        Path pathOfTestFile = Path.of("testResources/writeTest.txt");
+
+
+        String expected = "Det här skrev jag ner till fil precis";
+        m1.writeToFile(pathOfTestFile,expected);
+
+
+
+    }
+}

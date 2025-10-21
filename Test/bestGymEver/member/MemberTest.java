@@ -3,6 +3,7 @@ package bestGymEver.member;
 import bestGymEver.MemberType;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +39,5 @@ class MemberTest {
         assertFalse(m2.membershipValid());
     }
 
-    @Test
-    void
+
 }

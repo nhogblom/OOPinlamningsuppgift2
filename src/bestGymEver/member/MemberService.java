@@ -64,7 +64,6 @@ public class MemberService {
         try (Scanner sc = new Scanner(new File(path.toString()))){
             // skip first row
             sc.nextLine();
-
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 String[] memberValuesSeparated = new String[7];
@@ -72,7 +71,6 @@ public class MemberService {
                 members.add(this.createMemberFromFileData(memberValuesSeparated));
             }
         }
-
         return members;
     }
 
