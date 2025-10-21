@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MemberService {
 
-    public Member search(String searchString, List<Member> memberList) {
+    public Member searchMember(String searchString, List<Member> memberList) {
         Member member = null;
         for (int i = 0; i < memberList.size(); i++) {
             if (searchString.toLowerCase().equals(memberList.get(i).getName().toLowerCase())) {

@@ -27,7 +27,7 @@ public class BestGymEver {
                     System.exit(0);
                     break;
                 }
-                Member searchedMember = mS.search(searchString, members);
+                Member searchedMember = mS.searchMember(searchString, members);
 
                 if (searchedMember != null) {
                     System.out.println(searchedMember.InfoToReceptionist());

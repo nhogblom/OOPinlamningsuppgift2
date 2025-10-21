@@ -94,7 +94,7 @@ class MemberServiceTest {
 
 
     @Test
-    void searchTest() {
+    void searchMemberTest() {
         mS = new MemberService();
 
         Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2020-05-20"), MemberType.PLATINA);
@@ -102,12 +102,12 @@ class MemberServiceTest {
         List<Member> members = new ArrayList<>();
         members.add(m1);
         members.add(m2);
-        assertEquals(m1, mS.search("Niklas", members));
-        assertEquals(m2, mS.search("Albin", members));
-        assertNotEquals(m2, mS.search("Niklas", members));
-        assertNotEquals(m1, mS.search("Albin", members));
-        assertEquals(m1, mS.search("9000001234", members));
-        assertEquals(m2, mS.search("1900000124", members));
-        assertNotEquals(m1, mS.search("Ingen heter så här", members));
+        assertEquals(m1, mS.searchMember("Niklas", members));
+        assertEquals(m2, mS.searchMember("Albin", members));
+        assertNotEquals(m2, mS.searchMember("Niklas", members));
+        assertNotEquals(m1, mS.searchMember("Albin", members));
+        assertEquals(m1, mS.searchMember("9000001234", members));
+        assertEquals(m2, mS.searchMember("1900000124", members));
+        assertNotEquals(m1, mS.searchMember("Ingen heter så här", members));
     }
 }
