@@ -41,13 +41,19 @@ public class BestGymEver {
         } catch (FileNotFoundException e) {
             System.out.println("Filen hittades inte.");
             System.out.println(e.getMessage());
-        }catch (InvalidInputParameterForMember e){
+        } catch (InvalidInputParameterForMember e) {
             System.out.println("Felaktig data för enskild medlem");
             System.out.println(e.getMessage());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("IO Exception inträffade.");
             System.out.println(e.getMessage());
         }
+    }
+
+    void main() {
+
+        BestGymEver bge = new BestGymEver();
+        bge.runProgram();
+
     }
 }
