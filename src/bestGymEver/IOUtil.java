@@ -14,17 +14,6 @@ public class IOUtil {
         }
     }
 
-    public String readLastLineFromFile(Path path) throws IOException {
-        String stringToReturn = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(path.toString()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                stringToReturn = line;
-            }
-        }
-        return stringToReturn;
-    }
-
     public List<String> readFromFile(Path path) throws IOException {
         List<String> listOfStringToReturn = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(path.toString()))){

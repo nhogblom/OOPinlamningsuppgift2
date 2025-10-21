@@ -1,5 +1,6 @@
 package bestGymEver.member;
 
+import bestGymEver.IOUtil;
 import bestGymEver.MemberType;
 
 
@@ -50,16 +51,11 @@ public class Member {
         return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDateTime.now().format(dtf);
     }
 
-    public void logVisit() {
-        String filepath = "src/BestGymEver/membersactivity/";
-        String filename = this.getPersonnummer() + ".txt";
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filepath + filename, true))) {
-            pw.println(logVisitString());
-            pw.flush();
-            IO.println("Besök registrerades.");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void logVisit() throws IOException {
+        IOUtil ioUtil = new IOUtil();
+        Path path = Path.of("src/BestGymEver/membersactivity/"+this.getPersonnummer()+".txt");
+        ioUtil.writeToFile(path,logVisitString());
+        IO.println("Besök registrerades.");
     }
 
 
