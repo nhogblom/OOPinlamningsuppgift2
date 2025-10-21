@@ -1,6 +1,6 @@
 package bestGymEver.member;
 
-import bestGymEver.MemberType;
+import bestGymEver.InvalidInputParameterForMember;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,14 +10,13 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
 
     List<Member> membersList;
-    MemberService mS = new MemberService(true);
+    MemberService mS = new MemberService();
 
     @BeforeEach
     void setUp() {
@@ -26,10 +25,11 @@ class MemberServiceTest {
     }
 
     @Test
-    void createMemberFromFileDataTest() {
-        mS = new MemberService(true);
+    void createMemberFromFileDataTest() throws InvalidInputParameterForMember {
+        mS = new MemberService();
 
         String[] rawMemberData = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30", "Platina"};
+        String[] rawMemberDataFaulty = {"Fredrik Berggren", "Skolgränd 8, 16819 Norrköping", "fredde@fakemail.se", "851020-6728", "2019-12-30", "2021-12-30korv", "Platina"};
         Member member = mS.createMemberFromFileData(rawMemberData);
         String expectedMemberName = "Fredrik Berggren";
         String expectedMemberAdress = "Skolgränd 8, 16819 Norrköping";
@@ -57,12 +57,15 @@ class MemberServiceTest {
 
         assertEquals(LocalDate.parse(expectedMemberLastUpdatedDate), member.getDateOfMostRecentMembershipRenewal());
 
+        assertThrows(InvalidInputParameterForMember.class, () -> mS.createMemberFromFileData(rawMemberDataFaulty));
+        assertDoesNotThrow( () -> mS.createMemberFromFileData(rawMemberData));
+
     }
 
 
     @Test
-    void readMembersFromFileForRealTest() throws IOException {
-        mS = new MemberService(true);
+    void readMembersFromFileForRealTest() throws IOException, InvalidInputParameterForMember {
+        mS = new MemberService();
 
         String testFilePath = "testResources/gym_medlemmar.txt";
         Path path = Path.of(testFilePath);
@@ -87,7 +90,7 @@ class MemberServiceTest {
 
     @Test
     void searchTest() {
-        mS = new MemberService(true);
+        mS = new MemberService();
 
         Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2020-05-20"), MemberType.PLATINA);
         Member m2 = new Member("Albin", "Borrvägen", "1900000124", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2020-05-20"), MemberType.PLATINA);

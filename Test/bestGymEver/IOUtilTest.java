@@ -1,9 +1,11 @@
 package bestGymEver;
 
 import bestGymEver.member.Member;
+import bestGymEver.member.MemberType;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,12 +13,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IOUtilTest {
-    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA,true);
+    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA);
     IOUtil ioUtil = new IOUtil();
 
 
@@ -59,6 +61,7 @@ public class IOUtilTest {
     @Test
     void readFromFileTest() throws IOException {
         Path pathOfTestFile = Path.of("testResources/readTest.txt");
+        Path brokenPath = Path.of("asdmasj");
 
         String expected = "[Det, här, är, bara, ett, test!]";
         String unexpected = "Något annat";
@@ -66,6 +69,19 @@ public class IOUtilTest {
 
         assertEquals(expected,actual);
         assertNotEquals(unexpected,actual);
+        assertThrows(FileNotFoundException.class, () -> ioUtil.readFromFile(brokenPath));
+        assertThrows(IOException.class, () -> ioUtil.readFromFile(brokenPath));
+    }
 
+    @Test
+    void collectStringFromTerminalTest(){
+        IOUtil ioUtil = new IOUtil(true);
+
+        String expected = "Hejsan hur mår du?";
+        String unexpected = "Dra åt skogen!";
+        String actual = ioUtil.collectStringFromTerminal("här behöver det egentligen inte stå någonting",new Scanner("Inte här heller"));
+
+        assertEquals (expected,actual);
+        assertNotEquals(unexpected,actual);
     }
 }

@@ -1,7 +1,7 @@
 package bestGymEver.member;
 
 import bestGymEver.IOUtil;
-import bestGymEver.MemberType;
+import bestGymEver.InvalidInputParameterForMember;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,15 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberService {
-    private final boolean isTest;
-
-    public MemberService() {
-        this.isTest = false;
-    }
-
-    public MemberService(boolean isTest) {
-        this.isTest = isTest;
-    }
 
     public Member search(String searchString, List<Member> memberList) {
         Member member = null;
@@ -32,7 +23,7 @@ public class MemberService {
         return member;
     }
 
-    public Member createMemberFromFileData(String[] rawMemberData) {
+    public Member createMemberFromFileData(String[] rawMemberData) throws InvalidInputParameterForMember{
         Member member = null;
         try {
             String name = rawMemberData[0].trim();
@@ -50,14 +41,14 @@ public class MemberService {
             }
             member = new Member(name, adress, personnummer, email, dateOfBecomingMember, dateOfMostRecentMembershipRenewal, memberTypeCurrent);
         } catch (Exception e) {
-            System.out.println("Fel vid inläsning av användardata.." + e.getMessage());
+            throw new InvalidInputParameterForMember("Felaktig data för användare.");
         }
         return member;
     }
 
 
 
-    public List<Member> readMembersFromFileToList(Path path) throws IOException {
+    public List<Member> readMembersFromFileToList(Path path) throws IOException, InvalidInputParameterForMember {
         List<Member> members = new ArrayList<>();
         IOUtil ioUtil = new IOUtil();
         List<String> allTheLines = ioUtil.readFromFile(path);

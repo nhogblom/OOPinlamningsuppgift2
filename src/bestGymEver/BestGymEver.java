@@ -4,6 +4,7 @@ import bestGymEver.member.Member;
 import bestGymEver.member.MemberService;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
@@ -11,42 +12,42 @@ import java.util.Scanner;
 public class BestGymEver {
     Path path = Path.of("Resources/gym_medlemmar.txt");
     List<Member> members = null;
-    MemberService memberService = new MemberService();
+    MemberService mS = new MemberService();
     Scanner sc = new Scanner(System.in);
+    IOUtil ioUtil = new IOUtil();
 
-    public String collectStringFromTerminal(String prompt) {
-        String line = "";
-        System.out.println(prompt);
-        if (sc.hasNextLine()) {
-            if ((line = sc.nextLine()) == null || line.equals("quit")) {
-                System.out.println("Avslutar program");
-                System.exit(0);
+
+    public void runProgram() {
+        try {
+            members = mS.readMembersFromFileToList(path);
+            while (true) {
+                String searchString = ioUtil.collectStringFromTerminal("Skriv in ett namn eller personnummer", sc);
+                if (searchString.equals("quit") || searchString.isEmpty()) {
+                    System.out.println("Användaren avslutade programmet.");
+                    System.exit(0);
+                    break;
+                }
+                Member searchedMember = mS.search(searchString, members);
+
+                if (searchedMember != null) {
+                    System.out.println(searchedMember.InfoToReceptionist());
+                    if (searchedMember.membershipValid()) {
+                        searchedMember.logVisit();
+                    }
+                } else {
+                    System.out.println("Ingen träff, försök igen.");
+                }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen hittades inte.");
+            System.out.println(e.getMessage());
+        }catch (InvalidInputParameterForMember e){
+            System.out.println("Felaktig data för enskild medlem");
+            System.out.println(e.getMessage());
         }
-        return line;
+        catch (IOException e) {
+            System.out.println("IO Exception inträffade.");
+            System.out.println(e.getMessage());
+        }
     }
-
-//    public BestGymEver() {
-//
-//        try {
-//            members = memberService.readMembersFromFileToList(path);
-//        } catch (FileNotFoundException e) {
-//            System.out.println("File not found.");
-//        }
-//
-//        while (members != null) {
-//
-//            String match = collectStringFromTerminal("Skriv in ett namn eller personnummer:");
-//            Member member = memberService.search(match, members);
-//
-//            if (member == null) {
-//                IO.println("Ingen träff, försök igen.");
-//            } else {
-//                IO.println(member.InfoToReceptionist());
-//                if (member.membershipValid()) {
-//                    member.logVisit();
-//                }
-//            }
-//        }
-//    }
 }
