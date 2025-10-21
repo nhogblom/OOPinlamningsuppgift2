@@ -1,14 +1,13 @@
 package bestGymEver.member;
 
+import bestGymEver.IOUtil;
 import bestGymEver.MemberType;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class MemberService {
     private final boolean isTest;
@@ -26,7 +25,7 @@ public class MemberService {
         for (int i = 0; i < memberList.size(); i++) {
             if (searchString.toLowerCase().equals(memberList.get(i).getName().toLowerCase())) {
                 return memberList.get(i);
-            }else if (searchString.equals(memberList.get(i).getPersonnummer())) {
+            } else if (searchString.equals(memberList.get(i).getPersonnummer())) {
                 return memberList.get(i);
             }
         }
@@ -51,28 +50,23 @@ public class MemberService {
             }
             member = new Member(name, adress, personnummer, email, dateOfBecomingMember, dateOfMostRecentMembershipRenewal, memberTypeCurrent);
         } catch (Exception e) {
-            System.out.println("Fel vid inläsning av användardata.."+e.getMessage());
+            System.out.println("Fel vid inläsning av användardata.." + e.getMessage());
         }
         return member;
     }
 
 
 
-    public List<Member> readMembersFromFileToList(Path path) throws FileNotFoundException {
+    public List<Member> readMembersFromFileToList(Path path) throws IOException {
         List<Member> members = new ArrayList<>();
-        String line;
-        try (Scanner sc = new Scanner(new File(path.toString()))){
-            // skip first row
-            sc.nextLine();
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                String[] memberValuesSeparated = new String[7];
-                memberValuesSeparated = line.split(";");
-                members.add(this.createMemberFromFileData(memberValuesSeparated));
-            }
+        IOUtil ioUtil = new IOUtil();
+        List<String> allTheLines = ioUtil.readFromFile(path);
+        // skip first line
+        allTheLines.removeFirst();
+        for (String line : allTheLines) {
+            String[] memberValuesSeparated = line.split(";");
+            members.add(createMemberFromFileData(memberValuesSeparated));
         }
         return members;
     }
-
-
 }

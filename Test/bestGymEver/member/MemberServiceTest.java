@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ class MemberServiceTest {
 
 
     @Test
-    void readMembersFromFileForRealTest() throws FileNotFoundException {
+    void readMembersFromFileForRealTest() throws IOException {
         mS = new MemberService(true);
 
         String testFilePath = "testResources/gym_medlemmar.txt";
