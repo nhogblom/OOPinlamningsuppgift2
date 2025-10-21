@@ -24,11 +24,11 @@ class MemberTest {
     }
 
     @Test
-    void logVisitStringTest() {
+    void logStringTest() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String expected = "Niklas, 9000001234 besökte gymmet " + LocalDateTime.now().format(dtf);
-        assertEquals(expected, m1.logVisitString());
-        assertNotEquals(expected, m2.logVisitString());
+        assertEquals(expected, m1.logString());
+        assertNotEquals(expected, m2.logString());
     }
 
     @Test

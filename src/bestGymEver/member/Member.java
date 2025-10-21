@@ -32,7 +32,7 @@ public class Member {
 
 
 
-    public String logVisitString() {
+    public String logString() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return this.getName() + ", " + this.getPersonnummer() + " besökte gymmet " + LocalDateTime.now().format(dtf);
     }
@@ -40,7 +40,7 @@ public class Member {
     public void logVisit() throws IOException {
         IOUtil ioUtil = new IOUtil();
         Path path = Path.of("src/BestGymEver/membersactivity/"+this.getPersonnummer()+".txt");
-        ioUtil.writeToFile(path,logVisitString());
+        ioUtil.writeToFile(path,logString());
         IO.println("Besök registrerades.");
     }
 
