@@ -36,4 +36,17 @@ public class IOUtilTest {
         assertNotEquals(unexpected,actual);
 
     }
+
+    @Test
+    void readFromFileTest(){
+        Path pathOfTestFile = Path.of("testResources/readTest.txt");
+
+        String expected = "Det\nhär\nbara\nett\ntest!";
+        String unexpected = "Något annat";
+        String actual = ioUtil.readFile(pathOfTestFile);
+
+        assertEquals(expected,actual);
+        assertNotEquals(unexpected,actual);
+
+    }
 }
