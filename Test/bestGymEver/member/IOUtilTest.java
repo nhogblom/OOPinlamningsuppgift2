@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class IOUtilTest {
     Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA,true);
-
+    IOUtil ioUtil = new IOUtil();
 
     @Test
     void writeToFileTest(){
@@ -17,8 +17,8 @@ public class IOUtilTest {
 
 
         String expected = "Det här skrev jag ner till fil precis";
-        m1.writeToFile(pathOfTestFile,expected);
-
+        ioUtil.writeToFile(pathOfTestFile,expected);
+        String actual = ioUtil.readLastLineFromFile(pathOfTestFile);
 
 
     }
