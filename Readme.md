@@ -1,80 +1,89 @@
-OOP Inlämningsuppgift 2
+# 🏋️‍♂️ OOP Inlämningsuppgift 2
 
-Detta projekt är en inlämningsuppgift i kursen Objektorienterad programmering och syftar till att demonstrera praktisk tillämpning av OOP-principer i Java.
+> **Kurs:** Objektorienterad programmering  
+> **Språk:** Java  
+> **Författare:** [Niklas Högblom](https://github.com/nhogblom)
 
-Syfte
+Ett projekt som demonstrerar objektorienterade principer i praktiken genom att hantera medlemsinformation och träningshistorik för ett gym.
 
-Applikationen hanterar medlemsinformation för ett gym och loggar träningshistorik för aktiva medlemmar.
+---
 
-Projektstruktur
+## 🎯 Syfte  
+Programmet läser in ett medlemsregister, avgör vilka medlemmar som är aktiva och loggar deras träningsbesök.
+
+---
+
+## 🗂️ Projektstruktur
+
+```
 ├── src/bestGymEver/        # Programkod (entry point: BestGymEver.java)
-├── Test/bestGymEver/       # Enhetstester
+├── Test/bestGymEver/       # Enhetstester (JUnit)
 ├── Resources/              # Indatafiler (t.ex. medlemsregister)
-├── testResources/          # Testdata
+├── testResources/          # Testdata för tester
 └── README.md
+```
 
-Funktioner
+---
 
-Läser in medlemsinformation från Resources/
+## ⚙️ Funktioner
 
-Avgör om medlemmen är aktiv baserat på betalningsdatum
+✅ Läser medlemsinformation från `Resources/`  
+✅ Kontrollerar medlemsstatus utifrån betalningsdatum  
+✅ Loggar individuella träningsbesök till mappen `membersactivity`  
+✅ Hanterar felaktig indata robust  
+✅ Innehåller separata enhetstester i `Test/bestGymEver`
 
-Loggar besök för aktiva medlemmar till filen membersactivity
+---
 
-Hanterar felaktig indata och saknade poster robust
+## 📄 Datafiler
 
-Separata tester i Test/bestGymEver
+| Fil / Mapp                 | Beskrivning                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| **`Resources/gym-medlemmar.txt`** | Medlemsregister med namn, personnummer, datum som personen blev medlem, datum för senaste betalningsdatum samt medlemsnivå. |
+| **`membersactivity/personnummer.txt`**        | Loggfil där varje incheckning av aktiv medlem sparas.                     |
+| **`testResources/`**         | Testdata som används vid enhetstester.                                    |
 
-Datafiler
+---
 
-Resources/customers.txt
-Innehåller medlemsregister:
+## 🚀 Körning
 
-Förnamn Efternamn, Personnummer
-ÅÅÅÅ-MM-DD
+### 💻 Via IDE (rekommenderas)  
+1. Öppna projektet i **IntelliJ**, **Eclipse** eller motsvarande.  
+2. Kör filen **`BestGymEver.java`** under `src/bestGymEver/`.
 
-
-Datum anger senaste betalningsdatum.
-
-membersactivity
-Loggfil där träningsbesök sparas för aktiva medlemmar.
-
-Körning
-
-Via IDE (rekommenderat):
-
-Öppna projektet i IntelliJ, Eclipse eller liknande.
-
-Kör BestGymEver.java i src/bestGymEver.
-
-Via terminal:
-
+### 🧰 Via terminal
+```bash
 javac -d bin src/bestGymEver/*.java
 java -cp bin bestGymEver.BestGymEver
+```
 
-Testning
+---
 
-Tester finns i Test/bestGymEver och använder resurser från testResources/.
-De körs enklast via IDE med JUnit 5.
+## 🧪 Testning  
+Enhetstester finns i `Test/bestGymEver/` och använder testdata från `testResources/`.
 
-OOP-principer
+---
 
-Inkapsling: Klassvariabler hålls privata med publika getters/setters.
+## 🧱 Objektorienterade principer
 
-Arv & Polymorfism: Tillämpas där det är relevant mellan klasser.
+| Princip            | Tillämpning                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Inkapsling**       | Klassvariabler hålls privata med publika getters/setters.                  |
+| **Arv & Polymorfism** | Utnyttjas mellan relaterade klasser där det är relevant.                   |
+| **Modularisering**    | Logik, filhantering och användarinteraktion separeras tydligt.             |
 
-Modularisering: Filhantering, logik och användarinteraktion separeras tydligt.
+---
 
-Vidareutveckling
+## 🌱 Vidareutveckling  
+- Grafiskt gränssnitt (GUI) för enklare användning  
+- Databaslagring av medlemmar  
+- Statistik och analys av träningsfrekvens  
 
-GUI för användarvänlig inmatning
+---
 
-Databaslagring av medlemmar
+## 📬 Kontakt  
+**👤 Niklas Högblom**  
+📧 [nhogblom@gmail.com](mailto:nhogblom@gmail.com)  
+🔗 [GitHub‑profil](https://github.com/nhogblom)
 
-Statistik över träningsfrekvens
-
-Kontakt
-
-Författare: Niklas Högblom
-
-E-post: nhogblom@gmail.com
+---
