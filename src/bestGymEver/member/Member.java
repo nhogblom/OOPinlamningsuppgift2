@@ -40,7 +40,7 @@ public class Member {
     public void logVisit() throws IOException {
         IOUtil ioUtil = new IOUtil();
         Path path = Path.of("src/BestGymEver/membersactivity/"+this.getPersonnummer()+".txt");
-        ioUtil.writeToFile(path,logString());
+        ioUtil.writeToFile(path,logString(),true);
         IO.println("Besök registrerades.");
     }
 

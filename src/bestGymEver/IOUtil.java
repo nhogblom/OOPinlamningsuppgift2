@@ -17,8 +17,8 @@ public class IOUtil {
         this.isTest = isTest;
     }
 
-    public void writeToFile(Path path, String string) throws IOException {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path.toString(), true))) {
+    public void writeToFile(Path path, String string,Boolean append) throws IOException {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(path.toString(), append))) {
             pw.println(string);
             pw.flush();
         }

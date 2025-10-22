@@ -18,7 +18,6 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class IOUtilTest {
-    Member m1 = new Member("Niklas", "Borrvägen", "9000001234", "nhogblom@gmail.com", LocalDate.parse("2020-05-20"), LocalDate.parse("2025-05-20"), MemberType.PLATINA);
     IOUtil ioUtil = new IOUtil();
 
 
@@ -34,23 +33,25 @@ public class IOUtilTest {
         return stringToReturn;
     }
 
+
     @Test
     void writeToFileTest() throws IOException {
-
         Path pathOfTestFile = Path.of("testResources/writeTest.txt");
 
+        //  time stamp till expected
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime ldt = LocalDateTime.now();
         String dt = ldt.format(formatter);
 
         String expected = "Det här skrev jag ner till fil precis! Och klockan var " + dt;
         String unexpected = "Det var inte det här jag skrev ner.";
-        ioUtil.writeToFile(pathOfTestFile,expected);
+        // skriv till fil
+        ioUtil.writeToFile(pathOfTestFile,expected,true);
+        //jämför
         String actual = readLastLineFromFile(pathOfTestFile);
 
         assertEquals(expected,actual);
         assertNotEquals(unexpected,actual);
-
     }
 
     // stöd metod till readFromFileTest
