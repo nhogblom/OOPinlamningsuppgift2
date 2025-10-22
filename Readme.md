@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="logo.png" alt="BestGymEver logo" width="600"/>
+</p>
+
+<h1 align="center">💪 BestGymEver</h1>
+<p align="center"><i>Where every rep counts – and every member matters.</i></p>
+
 # 🏋️‍♂️ OOP Inlämningsuppgift 2
 
 > **Kurs:** Objektorienterad programmering  
