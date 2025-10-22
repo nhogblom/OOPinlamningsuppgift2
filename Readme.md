@@ -11,6 +11,7 @@ Ett projekt som demonstrerar objektorienterade principer i praktiken genom att h
 <p align="center">
   <img src="logo.png" alt="BestGymEver logo" width="600"/>
 </p>
+
 <p align="center"><i>Where every rep counts – and every member matters.</i></p>
 
 ---
