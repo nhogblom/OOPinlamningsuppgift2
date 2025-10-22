@@ -8,6 +8,8 @@
 
 Ett projekt som demonstrerar objektorienterade principer i praktiken genom att hantera medlemsinformation och träningshistorik för ett gym.
 
+---
+
 <p align="center">
   <img src="logo.png" alt="BestGymEver logo" width="600"/>
 </p>
