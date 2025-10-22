@@ -16,6 +16,9 @@ public class BestGymEver {
     Scanner sc = new Scanner(System.in);
     IOUtil ioUtil = new IOUtil();
 
+    public BestGymEver() {
+        runProgram();
+    }
 
     public void runProgram() {
         try {
@@ -51,9 +54,5 @@ public class BestGymEver {
     }
 
     void main() {
-
-        BestGymEver bge = new BestGymEver();
-        bge.runProgram();
-
     }
 }
