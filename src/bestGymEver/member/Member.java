@@ -88,4 +88,7 @@ public class Member {
         return personnummer;
     }
 
+    public void setDateOfMostRecentMembershipRenewal(LocalDate dateOfMostRecentMembershipRenewal) {
+        this.dateOfMostRecentMembershipRenewal = dateOfMostRecentMembershipRenewal;
+    }
 }

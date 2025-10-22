@@ -33,6 +33,10 @@ class MemberTest {
 
     @Test
     void membershipValid() {
+        LocalDate aValidDate = LocalDate.now();
+        m1.setDateOfMostRecentMembershipRenewal(aValidDate);
+        LocalDate aInvalidDate = LocalDate.now().minusYears(2);
+        m2.setDateOfMostRecentMembershipRenewal(aInvalidDate);
         assertTrue(m1.membershipValid());
         assertFalse(m2.membershipValid());
     }
